@@ -14,7 +14,8 @@ public class ExpirationService : BackgroundService
     {
         if (!stoppingToken.IsCancellationRequested)
         {
-            
+            await _factory.GetCassandraSession().DeactivateExpiredUrlsAsync();
+            await Task.Delay(TimeSpan.FromMinutes(10), stoppingToken);
         }
     }
 }
