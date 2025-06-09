@@ -39,7 +39,8 @@ public class UrlService : IUrlService
             IsActive = true
         };
         await _sessionFactory.GetCassandraSession().InsertUrlAsync(url);
-        return url;
+        return shortcode; //check if this is right or use url . But using url in return gives me this error:
+                          //Cannot convert expression type 'URL_Shortener.Models.UrlEntity' to return type 'string' 
     }
 
     public async Task<UrlEntity> GetUrlDetailsAsync(string code)
