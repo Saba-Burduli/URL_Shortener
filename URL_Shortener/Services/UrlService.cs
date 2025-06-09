@@ -1,32 +1,59 @@
 using URL_Shortener.InterFaces;
 using URL_Shortener.Models;
+using URL_Shortener.Utils;
 
 namespace URL_Shortener.Services;
 
 public class UrlService : IUrlService
-{ 
-    public Task<string> RedirectAsync(string code, string userAgent, string ip)
+{
+    private readonly ICassandraSessionFactory _sessionFactory;
+
+    public UrlService(ICassandraSessionFactory sessionFactory)
     {
-        throw new NotImplementedException();
+        _sessionFactory = sessionFactory;
+    }
+    public async Task<string> RedirectAsync(string shortcode, string userAgent, string ip)
+    {
+        var session = _sessionFactory.GetCassandraSession();
+        var url = await session.GetUrlAsync(shortcode);
+        if (url == null || url.IsActive != true || (url.ExpirationDate != null))
+        {
+            return null;
+        }
+
+        await session.IncrementClickAsync(shortcode);
+        await session.SaveAnalyticsAsync(shortcode, userAgent, ip);
+        return url.OriginalUrl;
     }
 
-    public Task<string> CreateUrlAsync(CreateUrlRequest request)
+    public async Task<string> CreateUrlAsync(CreateUrlRequest request)
     {
-        throw new NotImplementedException();
+        var shortcode = request.CustomAlias ?? Base62Encoder.Encode(DateTime.UtcNow.Ticks);
+        var url = new UrlEntity()
+        {
+            ShortCode = shortcode,
+            OriginalUrl = request.OriginalUrl,
+            CreatedAt = DateTime.UtcNow,
+            ExpirationDate = request.ExpirationDate,
+            ClickCount = 0,
+            IsActive = true
+        };
+        await _sessionFactory.GetCassandraSession().InsertUrlAsync(url);
+        return url;
     }
 
-    public Task<UrlEntity> GetUrlDetailsAsync(string code)
+    public async Task<UrlEntity> GetUrlDetailsAsync(string code)
     {
-        throw new NotImplementedException();
+        return await _sessionFactory.GetCassandraSession().GetUrlAsync(code);
     }
 
-    public Task<UrlEntity> UpdateUrlAsync(string code, UpdateUrlRequest request)
+    public async Task<UrlEntity> UpdateUrlAsync(string code, UpdateUrlRequest request)
     {
-        throw new NotImplementedException();
+        return await _sessionFactory.GetCassandraSession().UpdateUrlAsync(code,request);
     }
 
-    public Task<bool> DelateUrlAsync(string code)
+    public async Task<bool> DelateUrlAsync(string code)
     {
-        throw new NotImplementedException();
+        return await _sessionFactory.GetCassandraSession().DelateUrlAsync(code);
     }
 }
