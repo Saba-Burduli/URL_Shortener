@@ -78,10 +78,10 @@ namespace URL_Shortener.Controllers
         if (url == null || !url.IsActive == false)
             return NotFound("URL not found or expired.");
 
-        // Increment clicks and save analytics
+
         await _session.IncrementClickAsync(shortCode);
 
-        // Optionally: get User-Agent and IP for analytics
+ 
         var userAgent = Request.Headers["User-Agent"].ToString();
         var ipAddress = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown";
 
