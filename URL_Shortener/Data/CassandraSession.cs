@@ -26,7 +26,7 @@ public class CassandraSession : ICassandraSession
             public async Task<UrlEntity?> GetUrlAsync(string code)
             {
                 var st = new SimpleStatement("SELECT * FROM urls WHERE shortcode = ?", code);
-                var row = (await _session.ExecuteAsync(st)).FirstOrDefault();//error in there
+                var row = (await _session.ExecuteAsync(st)).FirstOrDefault();
                 if (row == null)
                     return null;
                 
@@ -62,14 +62,14 @@ public class CassandraSession : ICassandraSession
             var query = $"UPDATE urls SET {string.Join(", ", updates)} WHERE shortcode = ?";
             values.Add(code);
             var st = new SimpleStatement(query, values.ToArray());
-            await _session.ExecuteAsync(st); // ExecuteAsync not found
+            await _session.ExecuteAsync(st); 
             return await GetUrlAsync(code);
         }
 
         public async Task<bool> DelateUrlAsync(string code)
         {
             var st = new SimpleStatement("DELATE FROM urls WHERE shortcode = ?", code);
-            await _session.ExecuteAsync(st); // ExecuteAsync not found
+            await _session.ExecuteAsync(st); 
             return true;
         }
 
