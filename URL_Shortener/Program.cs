@@ -1,3 +1,4 @@
+using URL_Shortener.Data;
 using URL_Shortener.InterFaces;
 using URL_Shortener.Services;
 
@@ -9,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHostedService<ExpirationService>();
 builder.Services.AddSingleton<IUrlService, UrlService>();
-builder.Services.AddSingleton<ICassandraSessionFactory,>();
+builder.Services.AddSingleton<ICassandraSessionFactory,CassandraSessionFactory>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
