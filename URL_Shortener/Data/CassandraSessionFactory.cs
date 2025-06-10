@@ -14,8 +14,7 @@ public class CassandraSessionFactory : ICassandraSessionFactory
             .AddContactPoint("cassandra")
             .WithPort(9042)
             .Build();
-        _session = cluster.Connect("urlshortener"); // error in there:
-                                                    // Cannot convert source type 'Cassandra.ISession' to target type 'Microsoft.AspNetCore.Http.ISession'
+        _session = cluster.Connect("urlshortener"); 
     }
     public ICassandraSession GetCassandraSession() => new CassandraSession(_session);
 }
