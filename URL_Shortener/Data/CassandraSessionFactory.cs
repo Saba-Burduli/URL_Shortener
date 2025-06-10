@@ -1,6 +1,7 @@
 using Cassandra;
 using URL_Shortener.InterFaces;
-using ISession = Microsoft.AspNetCore.Http.ISession;
+using ISession = Cassandra.ISession;
+
 
 namespace URL_Shortener.Data;
 
