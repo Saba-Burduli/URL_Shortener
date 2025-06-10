@@ -15,8 +15,8 @@ builder.Services.AddSingleton<ICassandraSessionFactory,CassandraSessionFactory>(
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
-    // i have to add app.UseSwagger();
-    //    app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
 app.UseAuthentication();
