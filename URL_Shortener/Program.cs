@@ -9,6 +9,9 @@ builder.Services.AddAuthorization();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHostedService<ExpirationService>();
+builder.Services.AddOpenApi();
+
+//Services :
 builder.Services.AddSingleton<IUrlService, UrlService>();
 builder.Services.AddSingleton<ICassandraSessionFactory,CassandraSessionFactory>();
 
@@ -17,8 +20,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.MapOpenApi();
 }
 
+app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.Run();
