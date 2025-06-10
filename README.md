@@ -138,15 +138,4 @@ CREATE TABLE analytics (
 
 ---
 
-## 🚫 Optional Improvements
 
-* Admin dashboard
-* JWT Authentication
-* QR Code support
-* Rate limiting
-
----
-
-## 📚 License
-
-Licensed under the MIT License.
