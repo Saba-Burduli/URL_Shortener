@@ -1,3 +1,4 @@
+using Cassandra;
 using Microsoft.AspNetCore.Mvc;
 using URL_Shortener.Models;
 
