@@ -56,7 +56,7 @@ UrlShortener/
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/your-username/UrlShortener.git
+   git clone [https://github.com/your-username/UrlShortener.git](https://github.com/Saba-Burduli/URL_Shortener.git)
    cd UrlShortener
    ```
 
