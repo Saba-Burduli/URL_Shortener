@@ -9,12 +9,4 @@ public class AnalyticsEntity
     public string? UserAgent { get; set; }
 
     public string? IpAddress { get; set; }
-
-    //string ShortCode
-    // 
-    // DateTime ClickDate
-    // 
-    // string UserAgent
-    // 
-    // string IpAddress
 }
