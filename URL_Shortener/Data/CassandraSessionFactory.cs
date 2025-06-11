@@ -14,7 +14,7 @@ public class CassandraSessionFactory : ICassandraSessionFactory
             .AddContactPoint("cassandra")
             .WithPort(9042)
             .Build();
-        _session = cluster.Connect("urlshortener"); 
+        _session = cluster.Connect("cassandra"); 
     }
     public ICassandraSession GetCassandraSession() => new CassandraSession(_session);
 }
