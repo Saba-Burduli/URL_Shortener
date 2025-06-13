@@ -1,4 +1,4 @@
-﻿version: '3.9'
+﻿version: '3.8'
 
 services:
   cassandra:
@@ -17,23 +17,23 @@ services:
   cassandra-init:
     image: cassandra:4.1
     depends_on:
-      - cassandra
+      cassandra:
+        condition: service_healthy
     volumes:
       - ./docker/cassandra-schema.cql:/schema.cql
     entrypoint: [ "sh", "-c", "until cqlsh cassandra -e 'describe keyspaces'; do sleep 5; done && cqlsh cassandra -f /schema.cql" ]
 
   urlshortener:
     build:
-      context: /Users/gstore/Desktop/URL_Shortener/src/UrlShortener.Api
+      context: .
+      dockerfile: URL_Shortener/Dockerfile
     depends_on:
-      - cassandra
+      - cassandra-init
     ports:
-      - "5000:80"
+      - "5000:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    networks:
-      - default
+      - ASPNETCORE_URLS=http://+:8080
 
 volumes:
   cassandra_data:
-    
