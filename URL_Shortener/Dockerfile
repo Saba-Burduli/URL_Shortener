@@ -9,7 +9,7 @@ ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["URL_Shortener/URL_Shortener.csproj", "URL_Shortener/"]
 RUN dotnet restore "URL_Shortener/URL_Shortener.csproj"
-COPY . .
+COPY . ..yalm 
 WORKDIR "/src/URL_Shortener"
 RUN dotnet build "URL_Shortener.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
