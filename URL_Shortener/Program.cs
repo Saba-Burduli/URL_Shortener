@@ -18,7 +18,8 @@ builder.Services.AddSingleton<ICassandraSessionFactory,CassandraSessionFactory>(
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    app.UseSwaggerUI();
+    app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
