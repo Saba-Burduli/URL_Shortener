@@ -24,7 +24,7 @@ services:
 
   urlshortener:
     build:
-      context: ./src/UrlShortener.Api
+      context: /Users/gstore/Desktop/URL_Shortener/src/UrlShortener.Api
     depends_on:
       - cassandra
     ports:
