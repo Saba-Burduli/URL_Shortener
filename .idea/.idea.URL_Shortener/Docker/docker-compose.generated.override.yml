@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  urlshortener:
+    build:
+      context: "/Users/gstore/Desktop/URL_Shortener"
+      dockerfile: "URL_Shortener/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/URL_Shortener.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "url_shortener:dev"
+    ports: []
+    volumes:
+    - "/Users/gstore/Desktop/URL_Shortener/URL_Shortener:/app:rw"
+    - "/Users/gstore/Desktop/URL_Shortener:/src:rw"
+    - "/Users/gstore/.nuget/packages:/root/.nuget/packages"
+    working_dir: "/app"
