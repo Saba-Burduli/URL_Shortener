@@ -4,7 +4,7 @@ A high-performance, scalable **URL Shortener** service built with **.NET 9 Web A
 
 ---
 
-## 📌 Features
+## Features
 
 * Shorten long URLs with custom or auto-generated short codes
 * Expiration handling for temporary URLs
@@ -15,7 +15,7 @@ A high-performance, scalable **URL Shortener** service built with **.NET 9 Web A
 
 ---
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 * .NET 9 Web API
 * Apache Cassandra 4.1
@@ -24,7 +24,7 @@ A high-performance, scalable **URL Shortener** service built with **.NET 9 Web A
 
 ---
 
-## 📅 Project Structure
+## Project Structure
 
 ```
 UrlShortener/
@@ -44,14 +44,14 @@ UrlShortener/
 
 ---
 
-## 🚧 Prerequisites
+## Prerequisites
 
 * [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
 * [Docker](https://www.docker.com/products/docker-desktop)
 
 ---
 
-## 💪 Run the Project
+##  Run the Project
 
 1. **Clone the repository**:
 
@@ -72,7 +72,7 @@ UrlShortener/
 
 ---
 
-## 🚨 API Endpoints
+##   API Endpoints
 
 ### `POST /api/urls`
 
